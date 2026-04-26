@@ -1,5 +1,5 @@
 class_name StateNode
-extends Node 
+extends Node
 
 signal transition_requested(node: StateNode)
 
@@ -13,16 +13,16 @@ func _enter() -> void:
 func _exit() -> void:
 	pass
 
-func _on_unhandled_input(event: InputEvent) -> StateNode:
+func _on_unhandled_input(_event: InputEvent) -> StateNode:
 	return null
 
-func _on_input(event: InputEvent) -> StateNode:
+func _on_input(_event: InputEvent) -> StateNode:
 	return null
 	
-func _on_process(delta: float) -> StateNode:
+func _on_process(_delta: float) -> StateNode:
 	return null
 	
-func _on_process_physics(delta: float) -> StateNode:
+func _on_physics_process(_delta: float) -> StateNode:
 	return null
 
 #endregion
@@ -30,7 +30,7 @@ func _on_process_physics(delta: float) -> StateNode:
 #region protected
 
 func transition_to(node: StateNode) -> void:
-	transition_requested.emit.call_deferred(node)	
+	transition_requested.emit.call_deferred(node)
 
 #endregion
 

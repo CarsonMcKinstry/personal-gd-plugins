@@ -9,7 +9,6 @@ var _nodes: Dictionary[StringName, StateNode] = {}
 var _current: StateNode = null
 
 func _ready() -> void:
-
 	if _context == null:
 		push_error("StateContext is not set")
 		return
@@ -19,7 +18,7 @@ func _ready() -> void:
 		return
 	
 	for child in get_children():
-		if child is StateNode:		
+		if child is StateNode:
 			_nodes.set(child.name, child)
 			child._initialize(_context)
 			
@@ -68,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	if _current == null:
 		return
 		
-	_process_next_state(_current._on_process_physics(delta))
+	_process_next_state(_current._on_physics_process(delta))
 		
 func _process(delta: float) -> void:
 	if _current == null:

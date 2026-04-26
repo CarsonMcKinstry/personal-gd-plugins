@@ -16,7 +16,6 @@ var _current_action: SequencerAction
 var _context: SequencerContext
 
 static func from(actions: Array[SequencerAction]) -> Sequencer:
-	
 	var sequencer = Sequencer.new()
 	
 	sequencer._queue = actions
@@ -88,4 +87,3 @@ func _process(delta: float) -> void:
 		return
 	
 	_current_action._on_process(delta)
-	
