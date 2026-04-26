@@ -1,0 +1,19 @@
+{
+  "name": "personal-gd-plugins",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "package": "node --experimental-strip-types scripts/archive.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.1",
+  "devDependencies": {
+    "@types/archiver": "^7.0.0"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1"
+  }
+}
