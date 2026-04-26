@@ -23,5 +23,5 @@ func _on_input(_event: InputEvent) -> void:
 func _on_process(_delta: float) -> void:
 	pass
 	
-func _on_process_physics(_delta: float) -> void:
+func _on_physics_process(_delta: float) -> void:
 	pass

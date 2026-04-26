@@ -40,7 +40,14 @@ can contain as much or as little data as required by your state nodes. This is g
 
 #### StateNode
 
-A node exetends `StateNode` and is where your state logic lives. By default, the process mode is set to disabled and all processing is handled by the parent state machine. Each node has access to the current context, though it will be the base `StateContext`.
+A node extends `StateNode` and is where your state logic lives. By default, the process mode is set to disabled and all processing is handled by the parent state machine. Each node has access to the current context, though it will be the base `StateContext`.
+
+Each state node has similar callbacks to a normal `Node`, which are delegated to the current state by the parent state machine:
+
+- `_on_process`
+- `_on_physics_process`
+- `_on_input`
+- `_on_unhandled_input`
 
 Transitioning between states can be done in one of two ways:
 
@@ -49,9 +56,9 @@ Transitioning between states can be done in one of two ways:
 
 ##### Properties
 
-| name      | type         | description                                                                                                                                                        |
-| --------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| \_context | StateContext | The context that was shared to this node by the state machine. You should wrap this in a getter to ensure it has the correct type. See [State Nodes](#state-nodes) |
+| name      | type         | description                                                                                                                                                                     |
+| --------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \_context | StateContext | The context that was shared to this node by the state machine. You should wrap this in a getter to ensure it has the correct type. See the [State Nodes](#state-nodes) example. |
 
 ##### Signals
 
@@ -100,7 +107,7 @@ You are creating a character which plays different animations depending on their
 
 Start with a context. We want to give our state nodes access to the character, so we export it
 
-```gdscript
+```bash
 class_name CharacterContext
 extends StateContext
 
@@ -111,7 +118,7 @@ extends StateContext
 
 Next, we create a base state node to set up some shared functionality
 
-```gdscript
+```bash
 class_name CharacterStateNode
 extends StateNode
 
@@ -123,7 +130,7 @@ Notice we define a new `context` variable. This is to get around gdscripts limit
 
 Next, create our three state nodes.
 
-```gdscript
+```bash
 class_name IdleState
 extends CharacterStateNode
 
@@ -131,7 +138,7 @@ func _enter() -> void:
     context.character.animation_player.play("idle");
 ```
 
-```gdscript
+```bash
 class_name RunState
 extends CharacterStateNode
 
@@ -139,7 +146,7 @@ func _enter() -> void:
     context.character.animation_player.play("run");
 ```
 
-```gdscript
+```bash
 class_name JumpState
 extends CharacterStateNode
 
@@ -175,7 +182,7 @@ On the `StateMachine`, set the `context` export to the `CharacterContext` node, 
 
 Let's add to our `IdleState` so that we can transition to either our jumping or our running state.
 
-```gdscript
+```bash
 class_name IdleState
 extends CharacterStateNode
 
@@ -203,7 +210,7 @@ Finally, the parent `StateMachine` will pick this up and immediately begin trans
 
 Let's add another state to our tree and call it `AttackState`. This attack state halts the character, performs the attack animation, and then goes back to the `IdleState`. We don't necessarily have a way to handle this directly in one of the callback methods, so we need to use the `transition_to` method on the base `StateNode`.
 
-```
+```bash
 class_name AttackState
 extends CharacterStateNode
 
