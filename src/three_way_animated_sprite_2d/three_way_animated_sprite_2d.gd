@@ -1,7 +1,7 @@
 class_name ThreeWayAnimatedsprite2D
 extends AnimatedSprite2D
 
-const _suffixes := [
+const _SUFFIXES := [
 	["side", 0],
 	["down", 1],
 	["up", 2]
@@ -22,7 +22,7 @@ func _override_animations() -> void:
 		var sprite_texture = sprite_texture_overrides.overrides[animation_name]
 		
 		# Each animation should have three directions, suffixed with side, up, and down
-		for suffix_row in _suffixes:
+		for suffix_row in _SUFFIXES:
 			var suffix = suffix_row[0]
 			var row = suffix_row[1]
 			
